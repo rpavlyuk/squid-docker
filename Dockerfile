@@ -34,7 +34,10 @@ EXPOSE 3129/tcp
 
 # Volumes
 VOLUME ["/var/spool/squid"]
+VOLUME ["/var/log/squid"]
 
-# Run the binary
+# System volumes
 VOLUME ["/sys/fs/cgroup"]
+
+# Run init
 CMD ["/sbin/init"]
