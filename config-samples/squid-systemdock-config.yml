@@ -1,0 +1,53 @@
+cap_add:
+- SETUID
+- SETGID
+cap_drop: []
+cgroupns: host
+container: rpavlyuk/squid:latest
+created: 2026-01-11 13:14:05.707535
+device_requests: []
+devices: []
+environment:
+  TZ: "Europe/Kyiv"
+  container: "docker"
+extra_hosts: {}
+group_add: []
+healthcheck: {}
+init: false
+keep_alive: false
+links: {}
+mac_address: null
+mounts: []
+name: squid
+network_mode: bridge
+ports:
+  3128/tcp: 3128/tcp
+  3129/tcp: 3129/tcp
+privileged: false
+publish_all_ports: false
+remove: false
+restart_policy: {}
+security_opt:
+  - "seccomp:unconfined"
+  - "apparmor:unconfined"
+  - "no-new-privileges:false"
+tmpfs:
+   /run:          "exec,size=32M"
+   /run/lock:     "exec,size=32M"
+   /tmp:          "size=64M"
+   /var/spool/squid:  "noexec,size=128M,mode=1777"
+   /var/log/squid:  "noexec,size=64M,mode=1777"
+tty: false
+volumes:
+          /sys/fs/cgroup:
+                bind: /sys/fs/cgroup
+                mode: rw
+          /etc/squid/squid.conf:
+                bind: /etc/squid/squid.conf
+                mode: rw
+          /etc/pki/tls/certs/domain.com.crt:
+                bind: /etc/pki/tls/certs/domain.crt
+                mode: ro
+          /etc/pki/tls/private/domain.com.key:
+                bind: /etc/pki/tls/private/domain.com.key
+                mode: ro
